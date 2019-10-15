@@ -1,3 +1,5 @@
+function main() {
+
 /**
  * jTPS.java
  * 
@@ -423,6 +425,7 @@ class OrMask_Transaction {
     }
 }
 
+jsTPSDiv = document.getElementById("jsTPS_unit_testing_div");
 
 /**
  * jTPS_Unit_Tests.java
@@ -437,138 +440,180 @@ var tps = new jsTPS();
 var num = new Num();
 
 // Testing add
+jsTPSDiv.appendChild(document.createTextNode("Testing Add"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 if (0 === num.getNum()) {
-    console.log("add1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // ADD 5 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 5));
 if (5 == num.getNum()) {
-    console.log("add2")
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getSize()) {
-    console.log("add3")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("add4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getUndoSize()) {
-    console.log("add5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // ADD 10 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 if (15 === num.getNum()) {
-    console.log("add6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getSize()) {
-    console.log("add7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("add8")
+    jsTPSDiv.appendChild(document.createTextNode("Case 8 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getUndoSize()) {
-    console.log("add9")
+    jsTPSDiv.appendChild(document.createTextNode("Case 9 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // ADD 15 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (35 === num.getNum()) {
-    console.log("add10")
+    jsTPSDiv.appendChild(document.createTextNode("Case 10 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("add11")
+    jsTPSDiv.appendChild(document.createTextNode("Case 11 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("add12")
+    jsTPSDiv.appendChild(document.createTextNode("Case 12 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("add13")
+    jsTPSDiv.appendChild(document.createTextNode("Case 13 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
-console.log("\n")
+jsTPSDiv.appendChild(document.createElement("br"));
 
 // test And Mask
+jsTPSDiv.appendChild(document.createTextNode("Testing And Mask"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("and1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // ADD 5 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 12));
 tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
 if (4 === num.getNum()) {
-    console.log("and2")
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getSize()) {
-    console.log("and3")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 tps.undoTransaction()
 if (12 === num.getNum()) {
-    console.log("and4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getSize()) {
-    console.log("and5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getRedoSize()) {
-    console.log("and6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getUndoSize()) {
-    console.log("and7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
-console.log("\n")
+jsTPSDiv.appendChild(document.createElement("br"));
 
 // test Or Mask
+jsTPSDiv.appendChild(document.createTextNode("Testing Or Mask"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("or1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // ADD 5 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 12));
 tps.addTransaction(new OrMask_Transaction(num, num.getNum(), 4));
-if (4 === num.getNum()) {
-    console.log("or2")
+if (12 === num.getNum()) {
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getSize()) {
-    console.log("or3")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 tps.undoTransaction()
 if (12 === num.getNum()) {
-    console.log("or4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getSize()) {
-    console.log("or5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getRedoSize()) {
-    console.log("or6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getUndoSize()) {
-    console.log("or7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
-console.log("\n")
+jsTPSDiv.appendChild(document.createElement("br"));
 
 // Testing undo
+jsTPSDiv.appendChild(document.createTextNode("Testing Undo"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("undo1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 if (tps.hasTransactionToUndo() === false) {
-    console.log("undo2")
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("undo3")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Add 3 transactions (5, 10, and 15)
@@ -576,173 +621,218 @@ tps.addTransaction(new AddToNum_Transaction(num, 5))
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (tps.hasTransactionToUndo() === true) {
-    console.log("undo4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("undo5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("undo6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("undo7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("undo8")
+    jsTPSDiv.appendChild(document.createTextNode("Case 8 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("undo9")
+    jsTPSDiv.appendChild(document.createTextNode("Case 9 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 if (3 === tps.getUndoSize()) {
-    console.log("undo10")
+    jsTPSDiv.appendChild(document.createTextNode("Case 10 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo a Transaction
 tps.undoTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("undo11")
+    jsTPSDiv.appendChild(document.createTextNode("Case 11 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === true) {
-    console.log("undo12")
+    jsTPSDiv.appendChild(document.createTextNode("Case 12 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (15 === num.getNum()) {
-    console.log("undo13")
+    jsTPSDiv.appendChild(document.createTextNode("Case 13 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("undo14")
+    jsTPSDiv.appendChild(document.createTextNode("Case 14 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getRedoSize()) {
-    console.log("undo15")
+    jsTPSDiv.appendChild(document.createTextNode("Case 15 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getUndoSize()) {
-    console.log("undo16")
+    jsTPSDiv.appendChild(document.createTextNode("Case 16 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo another
 tps.undoTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("undo17")
+    jsTPSDiv.appendChild(document.createTextNode("Case 17 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === true) {
-    console.log("undo18")
+    jsTPSDiv.appendChild(document.createTextNode("Case 18 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (5 === num.getNum()) {
-    console.log("undo19")
+    jsTPSDiv.appendChild(document.createTextNode("Case 19 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("undo20")
+    jsTPSDiv.appendChild(document.createTextNode("Case 20 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getRedoSize()) {
-    console.log("undo21")
+    jsTPSDiv.appendChild(document.createTextNode("Case 21 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getUndoSize()) {
-    console.log("undo22")
+    jsTPSDiv.appendChild(document.createTextNode("Case 22 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // And another
 tps.undoTransaction();
 if (tps.hasTransactionToUndo() === false) {
-    console.log("undo23")
+    jsTPSDiv.appendChild(document.createTextNode("Case 23 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === true) {
-    console.log("undo24")
+    jsTPSDiv.appendChild(document.createTextNode("Case 24 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === num.getNum()) {
-    console.log("undo25")
+    jsTPSDiv.appendChild(document.createTextNode("Case 25 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("undo26")
+    jsTPSDiv.appendChild(document.createTextNode("Case 26 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getRedoSize()) {
-    console.log("undo27")
+    jsTPSDiv.appendChild(document.createTextNode("Case 27 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getUndoSize()) {
-    console.log("undo28")
+    jsTPSDiv.appendChild(document.createTextNode("Case 28 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // We have no more to undo so this should do nothing
 tps.undoTransaction();
 tps.undoTransaction();
 if (tps.hasTransactionToUndo() === false) {
-    console.log("undo29")
+    jsTPSDiv.appendChild(document.createTextNode("Case 29 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === true) {
-    console.log("undo30")
+    jsTPSDiv.appendChild(document.createTextNode("Case 30 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === num.getNum()) {
-    console.log("undo31")
+    jsTPSDiv.appendChild(document.createTextNode("Case 31 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("undo32")
+    jsTPSDiv.appendChild(document.createTextNode("Case 32 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getRedoSize()) {
-    console.log("undo33")
+    jsTPSDiv.appendChild(document.createTextNode("Case 33 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getUndoSize()) {
-    console.log("undo34")
+    jsTPSDiv.appendChild(document.createTextNode("Case 34 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
-console.log("\n")
+jsTPSDiv.appendChild(document.createElement("br"));
 
 // Testing redo
+jsTPSDiv.appendChild(document.createTextNode("Testing Redo"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("redo1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
-
-console.log("2")
-console.log("3")
 
 // Add 3 transactions (5, 10, and 15)
 tps.addTransaction(new AddToNum_Transaction(num, 5))
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("redo6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo8")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("redo9")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 if (3 === tps.getUndoSize()) {
-    console.log("redo10")
+    jsTPSDiv.appendChild(document.createTextNode("Case 8 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo a transaction and then redo it
 tps.undoTransaction();
 tps.doTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo11")
+    jsTPSDiv.appendChild(document.createTextNode("Case 9 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo12")
+    jsTPSDiv.appendChild(document.createTextNode("Case 10 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("redo13")
+    jsTPSDiv.appendChild(document.createTextNode("Case 11 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo14")
+    jsTPSDiv.appendChild(document.createTextNode("Case 12 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("redo15")
+    jsTPSDiv.appendChild(document.createTextNode("Case 13 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("redo16")
+    jsTPSDiv.appendChild(document.createTextNode("Case 14 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo two transactions and then redo them
@@ -751,22 +841,28 @@ tps.undoTransaction();
 tps.doTransaction();
 tps.doTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo17")
+    jsTPSDiv.appendChild(document.createTextNode("Case 15 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo18")
+    jsTPSDiv.appendChild(document.createTextNode("Case 16 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("redo19")
+    jsTPSDiv.appendChild(document.createTextNode("Case 17 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo20")
+    jsTPSDiv.appendChild(document.createTextNode("Case 18 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("redo21")
+    jsTPSDiv.appendChild(document.createTextNode("Case 19 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("redo22")
+    jsTPSDiv.appendChild(document.createTextNode("Case 20 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo all three transactions and redo them
@@ -777,22 +873,28 @@ tps.doTransaction();
 tps.doTransaction();
 tps.doTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo23")
+    jsTPSDiv.appendChild(document.createTextNode("Case 21 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo24")
+    jsTPSDiv.appendChild(document.createTextNode("Case 22 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("redo25")
+    jsTPSDiv.appendChild(document.createTextNode("Case 23 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo26")
+    jsTPSDiv.appendChild(document.createTextNode("Case 24 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("redo27")
+    jsTPSDiv.appendChild(document.createTextNode("Case 25 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("redo28")
+    jsTPSDiv.appendChild(document.createTextNode("Case 26 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo three transactions and redo two
@@ -802,22 +904,28 @@ tps.undoTransaction();
 tps.doTransaction();
 tps.doTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo29")
+    jsTPSDiv.appendChild(document.createTextNode("Case 27 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === true) {
-    console.log("redo30")
+    jsTPSDiv.appendChild(document.createTextNode("Case 28 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (15 === num.getNum()) {
-    console.log("redo31")
+    jsTPSDiv.appendChild(document.createTextNode("Case 29 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo32")
+    jsTPSDiv.appendChild(document.createTextNode("Case 30 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (1 === tps.getRedoSize()) {
-    console.log("redo33")
+    jsTPSDiv.appendChild(document.createTextNode("Case 31 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (2 === tps.getUndoSize()) {
-    console.log("redo34")
+    jsTPSDiv.appendChild(document.createTextNode("Case 32 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Undo all three transactions and redo four, which
@@ -831,30 +939,42 @@ tps.doTransaction();
 tps.doTransaction();
 tps.doTransaction();
 if (tps.hasTransactionToUndo() === true) {
-    console.log("redo29")
+    jsTPSDiv.appendChild(document.createTextNode("Case 33 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (tps.hasTransactionToRedo() === false) {
-    console.log("redo30")
+    jsTPSDiv.appendChild(document.createTextNode("Case 34 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (35 === num.getNum()) {
-    console.log("redo31")
+    jsTPSDiv.appendChild(document.createTextNode("Case 35 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("redo32")
+    jsTPSDiv.appendChild(document.createTextNode("Case 36 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("redo33")
+    jsTPSDiv.appendChild(document.createTextNode("Case 37 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("redo34")
+    jsTPSDiv.appendChild(document.createTextNode("Case 38 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
-// Testing Clear
+jsTPSDiv.appendChild(document.createElement("br"));
+
+// Testing clear
+jsTPSDiv.appendChild(document.createTextNode("Testing Clear"));
+jsTPSDiv.appendChild(document.createElement("br"));
+
 var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("clear1")
+    jsTPSDiv.appendChild(document.createTextNode("Case 1 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Add 3 transactions (5, 10, and 20)
@@ -862,32 +982,40 @@ tps.addTransaction(new AddToNum_Transaction(num, 5))
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (35 === num.getNum()) {
-    console.log("clear2")
+    jsTPSDiv.appendChild(document.createTextNode("Case 2 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("clear3")
+    jsTPSDiv.appendChild(document.createTextNode("Case 3 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("clear4")
+    jsTPSDiv.appendChild(document.createTextNode("Case 4 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 if (3 === tps.getUndoSize()) {
-    console.log("clear5")
+    jsTPSDiv.appendChild(document.createTextNode("Case 5 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Clear all the transactions
 tps.clearAllTransactions();
 if (35 === num.getNum()) {
-    console.log("clear6")
+    jsTPSDiv.appendChild(document.createTextNode("Case 6 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getSize()) {
-    console.log("clear7")
+    jsTPSDiv.appendChild(document.createTextNode("Case 7 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("clear8")
+    jsTPSDiv.appendChild(document.createTextNode("Case 8 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getUndoSize()) {
-    console.log("clear9")
+    jsTPSDiv.appendChild(document.createTextNode("Case 9 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Add 3 Transactions
@@ -895,31 +1023,39 @@ tps.addTransaction(new AddToNum_Transaction(num, 5))
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (70 === num.getNum()) {
-    console.log("clear10")
+    jsTPSDiv.appendChild(document.createTextNode("Case 10 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("clear11")
+    jsTPSDiv.appendChild(document.createTextNode("Case 11 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("clear12")
+    jsTPSDiv.appendChild(document.createTextNode("Case 12 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("clear13")
+    jsTPSDiv.appendChild(document.createTextNode("Case 13 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // clear them all out again
 tps.clearAllTransactions()
 if (70 === num.getNum()) {
-    console.log("clear16")
+    jsTPSDiv.appendChild(document.createTextNode("Case 14 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getSize()) {
-    console.log("clear17")
+    jsTPSDiv.appendChild(document.createTextNode("Case 15 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("clear18")
+    jsTPSDiv.appendChild(document.createTextNode("Case 16 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getUndoSize()) {
-    console.log("clear19")
+    jsTPSDiv.appendChild(document.createTextNode("Case 17 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 // Add 3 Transactions
@@ -927,21 +1063,28 @@ tps.addTransaction(new AddToNum_Transaction(num, 5))
 tps.addTransaction(new AddToNum_Transaction(num, 10))
 tps.addTransaction(new AddToNum_Transaction(num, 20))
 if (105 === num.getNum()) {
-    console.log("clear20")
+    jsTPSDiv.appendChild(document.createTextNode("Case 18 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getSize()) {
-    console.log("clear21")
+    jsTPSDiv.appendChild(document.createTextNode("Case 19 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (0 === tps.getRedoSize()) {
-    console.log("clear22")
+    jsTPSDiv.appendChild(document.createTextNode("Case 20 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 if (3 === tps.getUndoSize()) {
-    console.log("clear23")
+    jsTPSDiv.appendChild(document.createTextNode("Case 21 passed"));
+    jsTPSDiv.appendChild(document.createElement("br"));
 }
 
 
+}
 
-
+document.addEventListener('DOMContentLoaded', function() {
+    main();
+ }, false);
 
 
 

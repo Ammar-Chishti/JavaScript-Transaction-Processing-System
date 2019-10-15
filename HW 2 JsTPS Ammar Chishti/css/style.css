@@ -1,0 +1,27 @@
+#jsTPS_unit_testing_div {
+    width: 48vw;
+    height: 380vh;
+    display: inline-block;
+    text-align: center;
+
+
+    border-radius: 10px;
+    border: 2px solid red;
+    border-style: solid;
+}
+
+#jsTPS_tester_div {
+    width: 48vw;
+    height: 100vh;
+    text-align: center;
+
+    float: right;
+
+    border-radius: 10px;
+    border: 2px solid red;
+    border-style: solid;
+}
+
+h1 {
+    text-align: center;
+}
