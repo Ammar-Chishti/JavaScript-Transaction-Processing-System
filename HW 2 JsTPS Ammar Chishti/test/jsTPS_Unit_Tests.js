@@ -123,7 +123,7 @@ class jsTPS {
     undoTransaction() {
         if (this.hasTransactionToUndo()) {
             this.performingUndo = true;
-            this.transaction = this.transactions[mostRecentTransaction];
+            this.transaction = this.transactions[this.mostRecentTransaction];
             this.transaction.undoTransaction();
             this.mostRecentTransaction--;
             this.performingUndo = false;
@@ -137,7 +137,8 @@ class jsTPS {
      */
     clearAllTransactions() {
         // REMOVE ALL THE TRANSACTIONS
-        this.transactions.clear();
+        //this.transactions.clear();
+        this.transactions = []
         
         // MAKE SURE TO RESET THE LOCATION OF THE
         // TOP OF THE TPS STACK TOO
@@ -303,7 +304,7 @@ class AddToNum_Transaction {
      */
     undoTransaction() {
         let oldNum = num.getNum();
-        let newNum = oldNum - amountToAdd;
+        let newNum = oldNum - this.amountToAdd;
         this.num.setNum(newNum);
     }
 
@@ -356,7 +357,7 @@ class AndMask_Transaction {
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        this.num.setNum(intNum);
+        this.num.setNum(this.intNum);
     }
 
     /**
@@ -390,7 +391,7 @@ class OrMask_Transaction {
      * @param initNum
      * @param initAmountToAdd 
      */
-    OrMask_Transaction(initNum, initIntNum, initMask) {
+    constructor(initNum, initIntNum, initMask) {
         // KEEP THESE FOR LATER
         this.num = initNum;
         this.intNum = initIntNum;
@@ -402,14 +403,14 @@ class OrMask_Transaction {
      */
     
     doTransaction() {
-        this.num.orMask(mask);
+        this.num.orMask(this.mask);
     }
 
     /**
      * As the reverse of do, this method substracts from num.
      */
     undoTransaction() {
-        this.num.setNum(intNum);
+        this.num.setNum(this.intNum);
     }
 
     /**
@@ -492,18 +493,463 @@ var tps = new jsTPS();
 var num = new Num();
 
 if (0 === num.getNum()) {
-    console.log("mask1")
+    console.log("and1")
 }
 
 // ADD 5 TRANSACTION
 tps.addTransaction(new AddToNum_Transaction(num, 12));
 tps.addTransaction(new AndMask_Transaction(num, num.getNum(), 4));
 if (4 === num.getNum()) {
-    console.log("mask2")
+    console.log("and2")
 }
 if (2 === tps.getSize()) {
-    console.log("mask3")
+    console.log("and3")
 }
+
+tps.undoTransaction()
+if (12 === num.getNum()) {
+    console.log("and4")
+}
+if (2 === tps.getSize()) {
+    console.log("and5")
+}
+if (1 === tps.getRedoSize()) {
+    console.log("and6")
+}
+if (1 === tps.getUndoSize()) {
+    console.log("and7")
+}
+
+console.log("\n")
+
+// test Or Mask
+var tps = new jsTPS();
+var num = new Num();
+
+if (0 === num.getNum()) {
+    console.log("or1")
+}
+
+// ADD 5 TRANSACTION
+tps.addTransaction(new AddToNum_Transaction(num, 12));
+tps.addTransaction(new OrMask_Transaction(num, num.getNum(), 4));
+if (4 === num.getNum()) {
+    console.log("or2")
+}
+if (2 === tps.getSize()) {
+    console.log("or3")
+}
+
+tps.undoTransaction()
+if (12 === num.getNum()) {
+    console.log("or4")
+}
+if (2 === tps.getSize()) {
+    console.log("or5")
+}
+if (1 === tps.getRedoSize()) {
+    console.log("or6")
+}
+if (1 === tps.getUndoSize()) {
+    console.log("or7")
+}
+
+console.log("\n")
+
+// Testing undo
+var tps = new jsTPS();
+var num = new Num();
+
+if (0 === num.getNum()) {
+    console.log("undo1")
+}
+
+if (tps.hasTransactionToUndo() === false) {
+    console.log("undo2")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("undo3")
+}
+
+// Add 3 transactions (5, 10, and 15)
+tps.addTransaction(new AddToNum_Transaction(num, 5))
+tps.addTransaction(new AddToNum_Transaction(num, 10))
+tps.addTransaction(new AddToNum_Transaction(num, 20))
+if (tps.hasTransactionToUndo() === true) {
+    console.log("undo4")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("undo5")
+}
+if (35 === num.getNum()) {
+    console.log("undo6")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("undo7")
+}
+if (3 === tps.getSize()) {
+    console.log("undo8")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("undo9")
+}
+
+if (3 === tps.getUndoSize()) {
+    console.log("undo10")
+}
+
+// Undo a Transaction
+tps.undoTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("undo11")
+}
+if (tps.hasTransactionToRedo() === true) {
+    console.log("undo12")
+}
+if (15 === num.getNum()) {
+    console.log("undo13")
+}
+if (3 === tps.getSize()) {
+    console.log("undo14")
+}
+if (1 === tps.getRedoSize()) {
+    console.log("undo15")
+}
+if (2 === tps.getUndoSize()) {
+    console.log("undo16")
+}
+
+// Undo another
+tps.undoTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("undo17")
+}
+if (tps.hasTransactionToRedo() === true) {
+    console.log("undo18")
+}
+if (5 === num.getNum()) {
+    console.log("undo19")
+}
+if (3 === tps.getSize()) {
+    console.log("undo20")
+}
+if (2 === tps.getRedoSize()) {
+    console.log("undo21")
+}
+if (1 === tps.getUndoSize()) {
+    console.log("undo22")
+}
+
+// And another
+tps.undoTransaction();
+if (tps.hasTransactionToUndo() === false) {
+    console.log("undo23")
+}
+if (tps.hasTransactionToRedo() === true) {
+    console.log("undo24")
+}
+if (0 === num.getNum()) {
+    console.log("undo25")
+}
+if (3 === tps.getSize()) {
+    console.log("undo26")
+}
+if (3 === tps.getRedoSize()) {
+    console.log("undo27")
+}
+if (0 === tps.getUndoSize()) {
+    console.log("undo28")
+}
+
+// We have no more to undo so this should do nothing
+tps.undoTransaction();
+tps.undoTransaction();
+if (tps.hasTransactionToUndo() === false) {
+    console.log("undo29")
+}
+if (tps.hasTransactionToRedo() === true) {
+    console.log("undo30")
+}
+if (0 === num.getNum()) {
+    console.log("undo31")
+}
+if (3 === tps.getSize()) {
+    console.log("undo32")
+}
+if (3 === tps.getRedoSize()) {
+    console.log("undo33")
+}
+if (0 === tps.getUndoSize()) {
+    console.log("undo34")
+}
+
+console.log("\n")
+
+// Testing redo
+var tps = new jsTPS();
+var num = new Num();
+
+if (0 === num.getNum()) {
+    console.log("redo1")
+}
+
+console.log("2")
+console.log("3")
+
+// Add 3 transactions (5, 10, and 15)
+tps.addTransaction(new AddToNum_Transaction(num, 5))
+tps.addTransaction(new AddToNum_Transaction(num, 10))
+tps.addTransaction(new AddToNum_Transaction(num, 20))
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo4")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo5")
+}
+if (35 === num.getNum()) {
+    console.log("redo6")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo7")
+}
+if (3 === tps.getSize()) {
+    console.log("redo8")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("redo9")
+}
+
+if (3 === tps.getUndoSize()) {
+    console.log("redo10")
+}
+
+// Undo a transaction and then redo it
+tps.undoTransaction();
+tps.doTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo11")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo12")
+}
+if (35 === num.getNum()) {
+    console.log("redo13")
+}
+if (3 === tps.getSize()) {
+    console.log("redo14")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("redo15")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("redo16")
+}
+
+// Undo two transactions and then redo them
+tps.undoTransaction();
+tps.undoTransaction();
+tps.doTransaction();
+tps.doTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo17")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo18")
+}
+if (35 === num.getNum()) {
+    console.log("redo19")
+}
+if (3 === tps.getSize()) {
+    console.log("redo20")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("redo21")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("redo22")
+}
+
+// Undo all three transactions and redo them
+tps.undoTransaction();
+tps.undoTransaction();
+tps.undoTransaction();
+tps.doTransaction();
+tps.doTransaction();
+tps.doTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo23")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo24")
+}
+if (35 === num.getNum()) {
+    console.log("redo25")
+}
+if (3 === tps.getSize()) {
+    console.log("redo26")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("redo27")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("redo28")
+}
+
+// Undo three transactions and redo two
+tps.undoTransaction();
+tps.undoTransaction();
+tps.undoTransaction();
+tps.doTransaction();
+tps.doTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo29")
+}
+if (tps.hasTransactionToRedo() === true) {
+    console.log("redo30")
+}
+if (15 === num.getNum()) {
+    console.log("redo31")
+}
+if (3 === tps.getSize()) {
+    console.log("redo32")
+}
+if (1 === tps.getRedoSize()) {
+    console.log("redo33")
+}
+if (2 === tps.getUndoSize()) {
+    console.log("redo34")
+}
+
+// Undo all three transactions and redo four, which
+// should not produce an error but the last
+// redo should do nothing
+tps.undoTransaction();
+tps.undoTransaction();
+tps.undoTransaction();
+tps.doTransaction();
+tps.doTransaction();
+tps.doTransaction();
+tps.doTransaction();
+if (tps.hasTransactionToUndo() === true) {
+    console.log("redo29")
+}
+if (tps.hasTransactionToRedo() === false) {
+    console.log("redo30")
+}
+if (35 === num.getNum()) {
+    console.log("redo31")
+}
+if (3 === tps.getSize()) {
+    console.log("redo32")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("redo33")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("redo34")
+}
+
+// Testing Clear
+var tps = new jsTPS();
+var num = new Num();
+
+if (0 === num.getNum()) {
+    console.log("clear1")
+}
+
+// Add 3 transactions (5, 10, and 20)
+tps.addTransaction(new AddToNum_Transaction(num, 5))
+tps.addTransaction(new AddToNum_Transaction(num, 10))
+tps.addTransaction(new AddToNum_Transaction(num, 20))
+if (35 === num.getNum()) {
+    console.log("clear2")
+}
+if (3 === tps.getSize()) {
+    console.log("clear3")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("clear4")
+}
+
+if (3 === tps.getUndoSize()) {
+    console.log("clear5")
+}
+
+// Clear all the transactions
+tps.clearAllTransactions();
+if (35 === num.getNum()) {
+    console.log("clear6")
+}
+if (0 === tps.getSize()) {
+    console.log("clear7")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("clear8")
+}
+if (0 === tps.getUndoSize()) {
+    console.log("clear9")
+}
+
+// Add 3 Transactions
+tps.addTransaction(new AddToNum_Transaction(num, 5))
+tps.addTransaction(new AddToNum_Transaction(num, 10))
+tps.addTransaction(new AddToNum_Transaction(num, 20))
+if (70 === num.getNum()) {
+    console.log("clear10")
+}
+if (3 === tps.getSize()) {
+    console.log("clear11")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("clear12")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("clear13")
+}
+
+// clear them all out again
+tps.clearAllTransactions()
+if (70 === num.getNum()) {
+    console.log("clear16")
+}
+if (0 === tps.getSize()) {
+    console.log("clear17")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("clear18")
+}
+if (0 === tps.getUndoSize()) {
+    console.log("clear19")
+}
+
+// Add 3 Transactions
+tps.addTransaction(new AddToNum_Transaction(num, 5))
+tps.addTransaction(new AddToNum_Transaction(num, 10))
+tps.addTransaction(new AddToNum_Transaction(num, 20))
+if (105 === num.getNum()) {
+    console.log("clear20")
+}
+if (3 === tps.getSize()) {
+    console.log("clear21")
+}
+if (0 === tps.getRedoSize()) {
+    console.log("clear22")
+}
+if (3 === tps.getUndoSize()) {
+    console.log("clear23")
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
