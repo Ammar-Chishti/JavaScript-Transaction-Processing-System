@@ -2,9 +2,8 @@
 <head>
 <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
-<script type="text/javascript" src="./test/jsTPS_Unit_Tests.js">
-    window.onload = main();
-</script>
+<script type="text/javascript" src="./test/jsTPS_Unit_Tests.js"></script>
+<script type="text/javascript" src="./test/jsTPS_Tester.js"></script>
 </head>
 
 <body>
@@ -16,43 +15,39 @@
 
 
 <div id="jsTPS_tester_div">
-    <h1 center>Hello</h1>
+    <h1 center>JsTPS Tester</h1>
+    <br />
+    <br />
+    Input: <input id="input" type="text">
+    <br />
+    <br />
+    <button id="add" type="button">Add</button>
+    <br />
+    <br />
+    <br />
+    <button id="undo" type="button">Undo</button>
+    <br />
+    <br />
+    <button id="redo" type="button">Redo</button>
+    <br />
+    <br />
+    <button id="clear" type="button">Clear</button>
+    <br />
+    <br />
+    <button id="reset" type="button">Reset</button>
+    <br />
+    <br />
+    <br />
+    <div>
+        <p>Current jsTPS:</p>
+        <p>--Number of Transactions: <span id="num_transactions">0</span></p>
+        <p>--Current Index on Stack: <span id="index_on_stack">-1</span></p>
+        <p>--Current Transaction Stack:
+            <div id="current_transaction_stack"></div>
+        </p>
+        <p>Num is <span id="num">0</span></p>
+    </div>
 </div>
 </body>
 
 </html>
-
-
-<!--
-<script type="module" src="./JsTPS/jTPS.js"></script>
-<script type="module" src="./JsTPS/test.js"></script>
-
-
-<head>
-    <title>@todo - The Todo List Manager</title>
-    <link href="./css/fonts/Lexend Exa/css.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="./css/todo_layout.css" />
-    <link rel="stylesheet" type="text/css" href="./css/todo_style.css" />
-
-    <script src="./js/TodoList.js"></script>
-    <script src="./js/TodoConstants.js"></script>
-    <script src="./js/TodoListController.js"></script>
-    <script src="./js/TodoListItem.js"></script>
-    <script src="./js/TodoListModel.js"></script>
-    <script src="./js/TodoListView.js"></script>
-
-    
-    <script src="./test/TodoListTester.js"></script>
-
-    <script>
-        window.onload = function () {
-            window.todo = new TodoList();
-            window.todo.view = new TodoListView();
-            window.todo.model = new TodoListModel(window.todo.view);
-            window.todo.controller = new TodoListController(window.todo.model);
-            window.todoListTester = new TodoListTester();
-            window.todoListTester.runTests()
-        }
-    </script>
-</head>
--->
